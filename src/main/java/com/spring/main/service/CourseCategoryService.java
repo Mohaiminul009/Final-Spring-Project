@@ -34,13 +34,13 @@ public class CourseCategoryService {
 		return null;
 	}
 	
-	public CourseCategory update(CourseCategory courseCategory) {
-//		Optional<Course> optional = courseRepository.findById(course.getCourseId());
+//	public CourseCategory update(CourseCategory courseCategory) {
+//		Optional<CourseCategory> optional = courseCategoryRepository.findById(courseCategory.getCourse_cat_id());
 //		if (optional.isPresent()) {
 //			return optional.get();
 //		}
-		return courseCategoryRepository.save(courseCategory);
-	}
+//		return courseCategoryRepository.save(courseCategory);
+//	}
 	
 	public String delete(int id) {
 		Optional<CourseCategory> optional = courseCategoryRepository.findById(id);

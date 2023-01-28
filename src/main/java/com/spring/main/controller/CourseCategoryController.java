@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.main.entity.CourseCategory;
+import com.spring.main.repository.CourseCategoryRepository;
 import com.spring.main.service.CourseCategoryService;
 
 @RestController
@@ -23,6 +24,7 @@ public class CourseCategoryController {
 
 	@Autowired
 	private CourseCategoryService courseCategoryService;
+	private CourseCategoryRepository courseCategoryRepository;
 	
 	@PostMapping("/post")
 	public CourseCategory post(@RequestBody CourseCategory courseCategory) {
@@ -39,10 +41,23 @@ public class CourseCategoryController {
 		return courseCategoryService.getAll();
 	}
 	
-	@PutMapping("/update")
-	public CourseCategory update(@RequestBody CourseCategory courseCategory) {
-		return courseCategoryService.update(courseCategory);
-	}
+//	@PutMapping("/update")
+//	public CourseCategory update(@RequestBody CourseCategory courseCategory) {
+//		return courseCategoryService.update(courseCategory);
+//	}
+	
+	@PutMapping("/update/{id}")
+	CourseCategory update(@RequestBody CourseCategory courseCategory, @PathVariable int id) {
+        return courseCategoryRepository.findById(id)
+                .map(courseCat -> {
+                	courseCat.setCourseCatName(courseCategory.getCourseCatName());
+                    return courseCategoryRepository.save(courseCategory);
+                })
+                .orElseGet(() -> {
+                	courseCategory.setCourse_cat_id(id);
+                    return courseCategoryRepository.save(courseCategory);
+                });
+    }
 	
 	@DeleteMapping("/delete/{id}")
 	public String delete(@PathVariable int id) {
