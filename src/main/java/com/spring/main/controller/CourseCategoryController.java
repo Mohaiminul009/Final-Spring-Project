@@ -1,8 +1,15 @@
 package com.spring.main.controller;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +31,8 @@ public class CourseCategoryController {
 
 	@Autowired
 	private CourseCategoryService courseCategoryService;
+	
+	@Autowired
 	private CourseCategoryRepository courseCategoryRepository;
 	
 	@PostMapping("/post")
@@ -51,7 +60,7 @@ public class CourseCategoryController {
         return courseCategoryRepository.findById(id)
                 .map(courseCat -> {
                 	courseCat.setCourseCatName(courseCategory.getCourseCatName());
-                    return courseCategoryRepository.save(courseCategory);
+                    return courseCategoryRepository.save(courseCat);
                 })
                 .orElseGet(() -> {
                 	courseCategory.setCourse_cat_id(id);

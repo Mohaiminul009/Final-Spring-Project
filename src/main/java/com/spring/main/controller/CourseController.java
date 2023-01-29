@@ -3,6 +3,7 @@ package com.spring.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.main.entity.Course;
+import com.spring.main.repository.CourseRepository;
 import com.spring.main.service.CourseService;
 
 @RestController
 @RequestMapping("/course")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class CourseController {
 
 	@Autowired
 	private CourseService courseService;
+	@Autowired
+	private CourseRepository courseRepository;
 	
 	@PostMapping("/post")
 	public Course post(@RequestBody Course course) {
@@ -37,10 +42,31 @@ public class CourseController {
 		return courseService.getAll();
 	}
 	
-	@PutMapping("/update")
-	public Course update(@RequestBody Course course) {
-		return courseService.update(course);
-	}
+//	@PutMapping("/update")
+//	public Course update(@RequestBody Course course) {
+//		return courseService.update(course);
+//	}
+	
+	@PutMapping("/update/{id}")
+	Course update(@RequestBody Course course, @PathVariable int id) {
+        return courseRepository.findById(id)
+                .map(couRSE -> {
+                	couRSE.setCourseName(course.getCourseName());
+                	couRSE.setCourseUploadDate(course.getCourseUploadDate());
+                	couRSE.setCourseDuration(course.getCourseDuration());
+                	couRSE.setCourseArticle(course.getCourseArticle());
+                	couRSE.setCourseResource(course.getCourseResource());
+                	couRSE.setCourseAccess(course.getCourseAccess());
+                	couRSE.setCourseDescription(course.getCourseDescription());
+                	couRSE.setCourseCurriculum(course.getCourseCurriculum());
+                	couRSE.setInstructorName(course.getInstructorName());
+                    return courseRepository.save(couRSE);
+                })
+                .orElseGet(() -> {
+                	course.setCourse_id(id);
+                    return courseRepository.save(course);
+                });
+    }
 	
 	@DeleteMapping("/delete/{id}")
 	public String delete(@PathVariable int id) {

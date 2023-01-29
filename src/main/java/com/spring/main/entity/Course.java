@@ -42,8 +42,14 @@ public class Course {
 	@Column(name = "course_curriculum")
 	private String courseCurriculum;
 	
+	@Column(name = "course_cat_name")
+	private String courseCatName;
+	
 	@Column(name = "course_cat_id")
 	private int courseCatId;
+	
+	@Column(name = "instructor_name")
+	private int instructorName;
 	
 	@Column(name = "instructor_id")
 	private int instructorId;
@@ -120,12 +126,28 @@ public class Course {
 		this.courseCurriculum = courseCurriculum;
 	}
 
+	public String getCourseCatName() {
+		return courseCatName;
+	}
+
+	public void setCourseCatName(String courseCatName) {
+		this.courseCatName = courseCatName;
+	}
+
 	public int getCourseCatId() {
 		return courseCatId;
 	}
 
 	public void setCourseCatId(int courseCatId) {
 		this.courseCatId = courseCatId;
+	}
+
+	public int getInstructorName() {
+		return instructorName;
+	}
+
+	public void setInstructorName(int instructorName) {
+		this.instructorName = instructorName;
 	}
 
 	public int getInstructorId() {
