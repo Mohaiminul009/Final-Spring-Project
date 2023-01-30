@@ -59,7 +59,6 @@ public class CourseController {
                 	couRSE.setCourseAccess(course.getCourseAccess());
                 	couRSE.setCourseDescription(course.getCourseDescription());
                 	couRSE.setCourseCurriculum(course.getCourseCurriculum());
-                	couRSE.setInstructorName(course.getInstructorName());
                     return courseRepository.save(couRSE);
                 })
                 .orElseGet(() -> {
