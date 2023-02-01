@@ -45,6 +45,12 @@ public class Course {
 	@Column(name = "course_cat_id")
 	private int courseCatId;
 	
+	@Column(name = "course_price")
+	private int coursePrice;
+	
+	@Column(name = "course_discount")
+	private int courseDiscount;
+	
 	@Column(name = "instructor_id")
 	private int instructorId;
 
@@ -135,6 +141,24 @@ public class Course {
 	public void setInstructorId(int instructorId) {
 		this.instructorId = instructorId;
 	}
+
+	public int getCoursePrice() {
+		return coursePrice;
+	}
+
+	public void setCoursePrice(int coursePrice) {
+		this.coursePrice = coursePrice;
+	}
+
+	public int getCourseDiscount() {
+		return courseDiscount;
+	}
+
+	public void setCourseDiscount(int courseDiscount) {
+		this.courseDiscount = courseDiscount;
+	}
+	
+	
 	
 	
 }
