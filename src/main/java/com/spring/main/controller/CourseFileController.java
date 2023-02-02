@@ -30,7 +30,7 @@ public class CourseFileController {
 	private CourseFileService courseFileService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<MessageDTO> post(MultipartFile file){
+	public ResponseEntity<MessageDTO> post(@RequestParam("file")  MultipartFile file){
 		String message = "";
 		try {
 			courseFileService.save(file);

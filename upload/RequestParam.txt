@@ -1,0 +1,11 @@
+Optional = can get any data or null , no error, no exception
+this.httpOptions = it can understand which type of data will send
+localDateTime(datetime) = current date
+extends Basemodel in Entity class
+select * from table where DATE(column) = "01-02-23"
+
+@putmapping
+Entity entity (@pathvariable int id, @Requestparam(value = "user") String username, @Requestparam(value = "email") String useremail, required=false){
+	
+}
+

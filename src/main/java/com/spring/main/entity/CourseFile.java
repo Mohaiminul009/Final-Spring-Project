@@ -29,6 +29,17 @@ public class CourseFile {
 	
 	@Column(name = "course_id")
 	private int courseId;
+	
+	
+
+//	public CourseFile(int course_file_id, String coursePic, String coursePdf, String courseVideo, int courseId) {
+//		super();
+//		this.course_file_id = course_file_id;
+//		this.coursePic = coursePic;
+//		this.coursePdf = coursePdf;
+//		this.courseVideo = courseVideo;
+//		this.courseId = courseId;
+//	}
 
 	public int getCourse_file_id() {
 		return course_file_id;

@@ -25,7 +25,7 @@ public class CourseFileService {
 	@Autowired
 	CourseFileRepository courseFileRepository;
 	
-	private final Path root = Paths.get("upload/");
+	private final Path root = Paths.get("F://Github/Final-Spring-Project/upload/");
 	
 	public void init() {
 		try {
@@ -40,15 +40,28 @@ public class CourseFileService {
 		try {
 			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
 			
+			System.out.println(file.getOriginalFilename());
 			CourseFile fileUpload = new CourseFile();
 			fileUpload.setCoursePic(root + file.getOriginalFilename());
 			fileUpload.setCoursePdf(root + file.getOriginalFilename());
 			fileUpload.setCourseVideo(root + file.getOriginalFilename());
 			courseFileRepository.save(fileUpload);
+		}
+		catch (Exception e) {
+			if (e instanceof FileAlreadyExistsException) {
+//				throw new RuntimeException("A file of that name already exists.");
+			}
+//			throw new RuntimeException(e.getMessage());
+		}
+	}
+	public void save1(MultipartFile file) {
+		try {
+			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
 		}catch (UncheckedIOException io) {
 			
 			throw new RuntimeException(io.getMessage());
 		} 
+		
 		catch (Exception e) {
 			if (e instanceof FileAlreadyExistsException) {
 				throw new RuntimeException("A file of that name already exists.");
@@ -56,6 +69,7 @@ public class CourseFileService {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
+	
 //	<<<<< get all file >>>>>>
 	public Stream<Path> loadAll() {
         try {
