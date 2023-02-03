@@ -42,8 +42,8 @@ public class Course {
 	@Column(name = "course_curriculum")
 	private String courseCurriculum;
 	
-	@Column(name = "course_cat_id")
-	private int courseCatId;
+	@Column(name = "course_cat_name2")
+	private String courseCatName2;
 	
 	@Column(name = "course_price")
 	private int coursePrice;
@@ -51,8 +51,11 @@ public class Course {
 	@Column(name = "course_discount")
 	private int courseDiscount;
 	
-	@Column(name = "instructor_id")
-	private int instructorId;
+	@Column(name = "instructor_name2")
+	private String instructorName2;
+	
+	@Column(name = "course_pic")
+	private String coursePic;
 
 	public int getCourse_id() {
 		return course_id;
@@ -126,20 +129,20 @@ public class Course {
 		this.courseCurriculum = courseCurriculum;
 	}
 
-	public int getCourseCatId() {
-		return courseCatId;
+	public String getCourseCatName2() {
+		return courseCatName2;
 	}
 
-	public void setCourseCatId(int courseCatId) {
-		this.courseCatId = courseCatId;
+	public void setCourseCatName2(String courseCatName2) {
+		this.courseCatName2 = courseCatName2;
 	}
 
-	public int getInstructorId() {
-		return instructorId;
+	public String getInstructorName2() {
+		return instructorName2;
 	}
 
-	public void setInstructorId(int instructorId) {
-		this.instructorId = instructorId;
+	public void setInstructorName2(String instructorName2) {
+		this.instructorName2 = instructorName2;
 	}
 
 	public int getCoursePrice() {
@@ -157,8 +160,13 @@ public class Course {
 	public void setCourseDiscount(int courseDiscount) {
 		this.courseDiscount = courseDiscount;
 	}
-	
-	
-	
+
+	public String getCoursePic() {
+		return coursePic;
+	}
+
+	public void setCoursePic(String coursePic) {
+		this.coursePic = coursePic;
+	}
 	
 }

@@ -34,13 +34,13 @@ public class InstructorService {
 		return null;
 	}
 	
-	public Instructor update(Instructor instructor) {
-//		Optional<Course> optional = courseRepository.findById(course.getCourseId());
+//	public Instructor update(Instructor instructor) {
+//		Optional<Instructor> optional = instructorRepository.findById(instructor.getInstructor_id());
 //		if (optional.isPresent()) {
 //			return optional.get();
 //		}
-		return instructorRepository.save(instructor);
-	}
+//		return instructorRepository.save(instructor);
+//	}
 	
 	public String delete(int id) {
 		Optional<Instructor> optional = instructorRepository.findById(id);

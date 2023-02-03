@@ -2,7 +2,6 @@ package com.spring.main.service;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.net.MalformedURLException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,8 +9,6 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +22,7 @@ public class CourseFileService {
 	@Autowired
 	CourseFileRepository courseFileRepository;
 	
-	private final Path root = Paths.get("F://Github/Final-Spring-Project/upload/");
+	private final Path root = Paths.get("upload/");
 	
 	public void init() {
 		try {
@@ -36,24 +33,34 @@ public class CourseFileService {
 		
 	}
 //	<<<<< save files >>>>>
-	public void save(MultipartFile file) {
+	public void save(MultipartFile[] files, int id) {
 		try {
-			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-			
-			System.out.println(file.getOriginalFilename());
-			CourseFile fileUpload = new CourseFile();
-			fileUpload.setCoursePic(root + file.getOriginalFilename());
-			fileUpload.setCoursePdf(root + file.getOriginalFilename());
-			fileUpload.setCourseVideo(root + file.getOriginalFilename());
-			courseFileRepository.save(fileUpload);
+			for(MultipartFile file : files) {
+				try {
+					String fileName = file.getOriginalFilename();//full name of file submitted
+                    String fileNameSplit = fileName.substring(fileName.lastIndexOf(".") + 1);//split between name and extension
+                    System.out.println("extension  "+ fileNameSplit);
+                    Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				CourseFile fileUpload = new CourseFile();
+				fileUpload.setCourseFileTitle(file.getOriginalFilename());
+				fileUpload.setCourseFileUrl(root + file.getOriginalFilename());
+				fileUpload.setCourseId(id);
+				courseFileRepository.save(fileUpload);
+				System.out.println(courseFileRepository.save(fileUpload).getCourseFileUrl());
+			}
 		}
 		catch (Exception e) {
 			if (e instanceof FileAlreadyExistsException) {
-//				throw new RuntimeException("A file of that name already exists.");
+				throw new RuntimeException("A file of that name already exists.");
 			}
-//			throw new RuntimeException(e.getMessage());
+			throw new RuntimeException(e.getMessage());
 		}
 	}
+	
+	
 	public void save1(MultipartFile file) {
 		try {
 			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));

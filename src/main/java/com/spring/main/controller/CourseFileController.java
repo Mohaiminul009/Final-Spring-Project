@@ -30,32 +30,30 @@ public class CourseFileController {
 	private CourseFileService courseFileService;
 	
 	@PostMapping("/post")
-	public ResponseEntity<MessageDTO> post(@RequestParam("file")  MultipartFile file){
-		String message = "";
-		try {
-			courseFileService.save(file);
-			message = "Uploaded the file successfully: " + file.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO(message));
-		} catch (Exception e) {
-			message = "Could not upload the file: " + file.getOriginalFilename()
-            + ". Error: " + e.getMessage();
-    return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageDTO(message));
-		}
-	}
+	public ResponseEntity<MessageDTO> post(@RequestParam("file") MultipartFile[] file, @RequestParam("id") int id) {
+        String message = "";
+        try {
+
+            System.out.println(id);
+            courseFileService.save(file, id);
+            message = "Uploaded the file successfully. " ;
+            return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO(message));
+        } catch (Exception e) {
+            message = "Could not upload the file: " + ". Error: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageDTO(message));
+        }
+    }
 	
 	@GetMapping("/getall")
-    public ResponseEntity<List<FileInfo>> getAll() {
-        List<FileInfo> fileInfo = courseFileService.loadAll().map(path -> {
-            String pic = MvcUriComponentsBuilder
+    public ResponseEntity<List<FileInfo>> getListFiles() {
+        List<FileInfo> fileInfos = courseFileService.loadAll().map(path -> {
+            String filename = path.getFileName().toString();
+            String url = MvcUriComponentsBuilder
                     .fromMethodName(CourseFileController.class, "getFile", path.getFileName().toString()).build().toString();
-            String pdf = MvcUriComponentsBuilder
-                    .fromMethodName(CourseFileController.class, "getFile", path.getFileName().toString()).build().toString();
-            String video = MvcUriComponentsBuilder
-                    .fromMethodName(CourseFileController.class, "getFile", path.getFileName().toString()).build().toString();
-            return new FileInfo(pic, pdf, video);
+            return new FileInfo(filename, url);
         }).collect(Collectors.toList());
 
-        return ResponseEntity.status(HttpStatus.OK).body(fileInfo);
+        return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
     }
 	
 	@DeleteMapping("/delete/{filename:.+}")

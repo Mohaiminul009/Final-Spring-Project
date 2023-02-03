@@ -2,39 +2,28 @@ package com.spring.main.dto;
 
 public class FileInfo {
 
-	private String pic;
-	private String pdf;
-	private String video;
-	
-	public FileInfo(String pic, String pdf, String video) {
-	    this.pic = pic;
-	    this.pdf = pdf;
-	    this.video = video;
+	  private String name;
+	  private String url;
+
+	  public FileInfo(String name, String url) {
+	    this.name = name;
+	    this.url = url;
 	  }
 
-	public String getPic() {
-		return pic;
-	}
+	  public String getName() {
+	    return this.name;
+	  }
 
-	public void setPic(String pic) {
-		this.pic = pic;
-	}
+	  public void setName(String name) {
+	    this.name = name;
+	  }
 
-	public String getPdf() {
-		return pdf;
-	}
+	  public String getUrl() {
+	    return this.url;
+	  }
 
-	public void setPdf(String pdf) {
-		this.pdf = pdf;
-	}
-
-	public String getVideo() {
-		return video;
-	}
-
-	public void setVideo(String video) {
-		this.video = video;
-	}
-	
+	  public void setUrl(String url) {
+	    this.url = url;
+	  }
 	
 }

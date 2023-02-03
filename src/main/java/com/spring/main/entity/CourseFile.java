@@ -18,28 +18,14 @@ public class CourseFile {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int course_file_id;
 	
-	@Column(name = "course_pic")
-	private String coursePic;
+	@Column(name = "course_file_title")
+	private String courseFileTitle;
 	
-	@Column(name = "course_pdf")
-	private String coursePdf;
-	
-	@Column(name = "course_video")
-	private String courseVideo;
+	@Column(name = "course_file_url")
+	private String courseFileUrl;
 	
 	@Column(name = "course_id")
 	private int courseId;
-	
-	
-
-//	public CourseFile(int course_file_id, String coursePic, String coursePdf, String courseVideo, int courseId) {
-//		super();
-//		this.course_file_id = course_file_id;
-//		this.coursePic = coursePic;
-//		this.coursePdf = coursePdf;
-//		this.courseVideo = courseVideo;
-//		this.courseId = courseId;
-//	}
 
 	public int getCourse_file_id() {
 		return course_file_id;
@@ -49,28 +35,20 @@ public class CourseFile {
 		this.course_file_id = course_file_id;
 	}
 
-	public String getCoursePic() {
-		return coursePic;
+	public String getCourseFileTitle() {
+		return courseFileTitle;
 	}
 
-	public void setCoursePic(String coursePic) {
-		this.coursePic = coursePic;
+	public void setCourseFileTitle(String courseFileTitle) {
+		this.courseFileTitle = courseFileTitle;
 	}
 
-	public String getCoursePdf() {
-		return coursePdf;
+	public String getCourseFileUrl() {
+		return courseFileUrl;
 	}
 
-	public void setCoursePdf(String coursePdf) {
-		this.coursePdf = coursePdf;
-	}
-
-	public String getCourseVideo() {
-		return courseVideo;
-	}
-
-	public void setCourseVideo(String courseVideo) {
-		this.courseVideo = courseVideo;
+	public void setCourseFileUrl(String courseFileUrl) {
+		this.courseFileUrl = courseFileUrl;
 	}
 
 	public int getCourseId() {
@@ -80,6 +58,8 @@ public class CourseFile {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+	
+	
 	
 	
 }
