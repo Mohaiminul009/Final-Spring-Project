@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.spring.main.entity.Applicant;
@@ -11,6 +12,6 @@ import com.spring.main.entity.Applicant;
 @Repository
 public interface ApplicantRepository extends JpaRepository<Applicant, Integer>{
 
-	@Query(value = "SELECT COUNT(applicant_id) AS total FROM applicant_form af", nativeQuery = true)
-	List<Applicant> countAll();
+	@Query(value = "SELECT COUNT(applicant_id) AS total FROM applicant_form ", nativeQuery = true)
+	Integer countAll();
 }

@@ -79,7 +79,8 @@ public class ApplicantController {
 	}
 	
 	@GetMapping("/getcount")
-	public List<Applicant> getCount() {
-		return applicantRepository.countAll();
+	public Integer getCount() {
+		Integer count = applicantRepository.countAll();
+		return  count;
 	}
 }
