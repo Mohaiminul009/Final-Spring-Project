@@ -3,6 +3,7 @@ package com.spring.main.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "purchase_course")
@@ -12,6 +13,7 @@ public class PurchaseCourse {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int purchase_course_id;
 
+    private int pCourseId;
     private String purchaseCourseName;
 
     private int purchaseCoursePrice;
@@ -24,12 +26,24 @@ public class PurchaseCourse {
 
     private String purchaseCourseTime;
 
+    private String purchaseCourseCountry;
+
+    private String purchaseCourseAccountType;
+
     public int getPurchase_course_id() {
         return purchase_course_id;
     }
 
     public void setPurchase_course_id(int purchase_course_id) {
         this.purchase_course_id = purchase_course_id;
+    }
+
+    public int getpCourseId() {
+        return pCourseId;
+    }
+
+    public void setpCourseId(int pCourseId) {
+        this.pCourseId = pCourseId;
     }
 
     public String getPurchaseCourseName() {
@@ -78,5 +92,21 @@ public class PurchaseCourse {
 
     public void setPurchaseCourseTime(String purchaseCourseTime) {
         this.purchaseCourseTime = purchaseCourseTime;
+    }
+
+    public String getPurchaseCourseCountry() {
+        return purchaseCourseCountry;
+    }
+
+    public void setPurchaseCourseCountry(String purchaseCourseCountry) {
+        this.purchaseCourseCountry = purchaseCourseCountry;
+    }
+
+    public String getPurchaseCourseAccountType() {
+        return purchaseCourseAccountType;
+    }
+
+    public void setPurchaseCourseAccountType(String purchaseCourseAccountType) {
+        this.purchaseCourseAccountType = purchaseCourseAccountType;
     }
 }

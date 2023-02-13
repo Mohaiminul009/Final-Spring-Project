@@ -1,10 +1,7 @@
 package com.spring.main.controller;
 
-import com.spring.main.entity.Course;
 import com.spring.main.entity.PurchaseCourse;
-import com.spring.main.repository.CourseRepository;
 import com.spring.main.repository.PurchaseCourseRepository;
-import com.spring.main.service.CourseService;
 import com.spring.main.service.PurchaseCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/purchasecourse")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-public class PurchaseCousreController {
+public class PurchaseCourseController {
 
     @Autowired
     private PurchaseCourseService purchaseCourseService;
@@ -24,12 +21,15 @@ public class PurchaseCousreController {
     @PostMapping("/post")
     public PurchaseCourse post(@RequestBody PurchaseCourse purchaseCourse) {
         PurchaseCourse pc = new PurchaseCourse();
+        pc.setpCourseId(purchaseCourse.getpCourseId());
         pc.setPurchaseCourseName(purchaseCourse.getPurchaseCourseName());
         pc.setPurchaseCoursePrice(purchaseCourse.getPurchaseCoursePrice());
         pc.setPurchaseCourseUserName(purchaseCourse.getPurchaseCourseUserName());
         pc.setPurchaseCourseUserAccount(purchaseCourse.getPurchaseCourseUserAccount());
         pc.setPurchaseCoursePayment(purchaseCourse.getPurchaseCoursePayment());
         pc.setPurchaseCourseTime(purchaseCourse.getPurchaseCourseTime());
+        pc.setPurchaseCourseAccountType(purchaseCourse.getPurchaseCourseAccountType());
+        pc.setPurchaseCourseCountry(purchaseCourse.getPurchaseCourseCountry());
         return purchaseCourseService.post(purchaseCourse);
     }
 
