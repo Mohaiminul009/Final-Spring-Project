@@ -78,4 +78,10 @@ public class CourseController {
 	public List<Course> postAll(@RequestBody List<Course> list) {
 		return courseService.postAll(list);
 	}
+
+	@GetMapping("/getbycat/{category}")
+	List<Course> allByCategory(@PathVariable String category) {
+		System.out.println(category);
+		return courseRepository.gatAllByCategory(category);
+	}
 }
