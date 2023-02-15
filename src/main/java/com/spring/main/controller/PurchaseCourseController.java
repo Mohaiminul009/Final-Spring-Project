@@ -79,4 +79,16 @@ public class PurchaseCourseController {
     public List<PurchaseCourse> postAll(@RequestBody List<PurchaseCourse> list) {
         return purchaseCourseService.postAll(list);
     }
+
+    @GetMapping("/getcount/{id}")
+    public Integer getCount(@PathVariable int id) {
+        Integer countall = purchaseCourseRepository.countAll(id);
+        return  countall;
+    }
+
+    @GetMapping("/getprice/{id}")
+    public Integer getPrice(@PathVariable int id) {
+        Integer totalprice = purchaseCourseRepository.totalPrice(id);
+        return  totalprice;
+    }
 }
