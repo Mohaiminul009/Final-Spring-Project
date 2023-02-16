@@ -91,4 +91,16 @@ public class PurchaseCourseController {
         Integer totalprice = purchaseCourseRepository.totalPrice(id);
         return  totalprice;
     }
+
+    @GetMapping("/gettotal")
+    public Integer getTotal() {
+        Integer total = purchaseCourseRepository.total();
+        return  total;
+    }
+
+    @GetMapping("/getbyusername/{username}")
+    List<PurchaseCourse> getAllUser(@PathVariable String username) {
+        List<PurchaseCourse> allUser = purchaseCourseRepository.getAllByUsername(username);
+        return allUser;
+    }
 }

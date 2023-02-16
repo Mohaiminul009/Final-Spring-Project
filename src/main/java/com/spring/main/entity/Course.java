@@ -57,6 +57,12 @@ public class Course {
 	@Column(name = "course_pic")
 	private String coursePic;
 
+	@Column(name = "course_pdf")
+	private String coursePdf;
+
+	@Column(name = "course_video")
+	private String courseVideo;
+
 	public int getCourse_id() {
 		return course_id;
 	}
@@ -168,5 +174,20 @@ public class Course {
 	public void setCoursePic(String coursePic) {
 		this.coursePic = coursePic;
 	}
-	
+
+	public String getCoursePdf() {
+		return coursePdf;
+	}
+
+	public void setCoursePdf(String coursePdf) {
+		this.coursePdf = coursePdf;
+	}
+
+	public String getCourseVideo() {
+		return courseVideo;
+	}
+
+	public void setCourseVideo(String courseVideo) {
+		this.courseVideo = courseVideo;
+	}
 }
